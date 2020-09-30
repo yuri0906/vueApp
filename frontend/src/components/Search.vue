@@ -10,7 +10,7 @@
 
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from "vue-property-decorator";
-import Methods from '../server/methods'
+//import Methods from '../server/methods'
 import axios from "axios";
 
 @Component
@@ -21,15 +21,14 @@ export default class Search extends Vue {
   async showResult(){
    const url = "XXXXXXXXXXXXXXXXXXX";
    
-   let response = await Methods.testPosting();
-   /*
+   //let response = await Methods.testPosting();
    await axios.get(url)
       .then((response) => {
         this.textInput = response.data.Items[0].Item["itemName"];
       })
       .catch((e) => {
         this.textInput = e;
-      }); */
+      }); 
   }
   
 
