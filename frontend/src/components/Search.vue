@@ -16,9 +16,10 @@ import axios from "axios";
 export default class Search extends Vue {
   public textInput = "";
   
+  //楽天API呼び出し処理、レスポンスをtextInputに代入
   async showResult(){
-   const url =
-   "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?applicationId=1076369533716180220&keyword=ペットフード";
+   const url = "XXXXXXXX";
+  
    await axios.get(url)
       .then((response) => {
         this.textInput = response.data.Items[0].Item["itemName"];
@@ -32,7 +33,7 @@ export default class Search extends Vue {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
 h3 {
   margin: 40px 0 0;

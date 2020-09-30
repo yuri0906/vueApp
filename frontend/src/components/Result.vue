@@ -5,6 +5,9 @@
 </template>
 
 <script lang="ts">
+/*
+* 未実装（結果表示用コンポーネントとして実装予定）
+*/
 import { Component, Prop, Vue } from "vue-property-decorator";
 import axios from "axios";
 
