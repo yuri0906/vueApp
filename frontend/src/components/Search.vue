@@ -18,7 +18,7 @@ export default class Search extends Vue {
   
   //楽天API呼び出し処理、レスポンスをtextInputに代入
   async showResult(){
-   const url = "XXXXXXXX";
+   const url = "XXXXXXXXXXXXXXXXXX";
   
    await axios.get(url)
       .then((response) => {
@@ -28,8 +28,6 @@ export default class Search extends Vue {
         this.textInput = e;
       });
   }
-
-  
 }
 </script>
 
