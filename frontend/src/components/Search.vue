@@ -18,7 +18,7 @@ export default class Search extends Vue {
   
   //楽天API呼び出し処理、レスポンスをtextInputに代入
   async showResult(){
-   const url = "XXXXXXXXXXXXXXXXXX";
+   const url = "XXXXXXXXXXXXXXXXXXX";
   
    await axios.get(url)
       .then((response) => {

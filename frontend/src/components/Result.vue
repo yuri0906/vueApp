@@ -16,7 +16,7 @@ export default class Result extends Vue {
   public result = "";
 
   public async showResult(){
-    const url = "XXXXXXXX"
+    const url = "XXXXXXXXXXXXXXXXXXX";
     
     await axios.get(url)
       .then((response) => {
