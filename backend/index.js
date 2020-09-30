@@ -6,10 +6,10 @@ const app = express()
 app.use(bodyParser.json())
 app.use(cors())
 
-app.get('/', function(req, res) {
+app.post('/', function(req, res) {
     res.send({
-      message: 'test'
+      message: req.body.text
     })
-  })
+})
   
-  app.listen(process.env.PORT || 3000)
+app.listen(process.env.PORT || 3000)

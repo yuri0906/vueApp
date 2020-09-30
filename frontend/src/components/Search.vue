@@ -10,6 +10,7 @@
 
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from "vue-property-decorator";
+import Methods from '../server/methods'
 import axios from "axios";
 
 @Component
@@ -19,15 +20,19 @@ export default class Search extends Vue {
   //楽天API呼び出し処理、レスポンスをtextInputに代入
   async showResult(){
    const url = "XXXXXXXXXXXXXXXXXXX";
-  
+   
+   let response = await Methods.testPosting();
+   /*
    await axios.get(url)
       .then((response) => {
         this.textInput = response.data.Items[0].Item["itemName"];
       })
       .catch((e) => {
         this.textInput = e;
-      });
+      }); */
   }
+  
+
 }
 </script>
 
