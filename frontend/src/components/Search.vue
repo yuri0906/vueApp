@@ -4,7 +4,7 @@
       <p>検索したい商品を入力してください</p>
       <input type="text" v-model="textInput"/>
       <input type="submit" value="検索" @click="showResult"/>
-      <p>{{ textInput }}</p>
+      <p>{{ result }}</p>
   </div>
 </template>
 
@@ -15,13 +15,14 @@ import Methods from '../server/methods';
 @Component
 export default class Search extends Vue {
   public textInput = "";
+  public result = "";
   
   /*
   サーバーからAPI処理結果を受け取る
   */
   async showResult(){
-   const response = await Methods.sendParams("自転車");
-   this.textInput = response.data;
+   const response = await Methods.sendParams(this.textInput);
+   this.result = response.data;
   }
 }
 </script>
