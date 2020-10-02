@@ -14,11 +14,11 @@ import Methods from '../server/methods';
 
 @Component
 export default class Search extends Vue {
-  public textInput = "";
-  public result = "";
+  public textInput = ""; //入力された値
+  public result = ""; //検索結果（データ成形未完了）
   
   /*
-  サーバーからAPI処理結果を受け取る
+  サーバーへリクエスト送信、レスポンス（API処理結果）を受け取る
   */
   async showResult(){
    const response = await Methods.sendParams(this.textInput);
@@ -26,7 +26,6 @@ export default class Search extends Vue {
   }
 }
 </script>
-
 
 <style scoped>
 
