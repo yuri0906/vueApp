@@ -2,16 +2,15 @@
   <div class="search">
     <h1>楽天商品検索</h1>
       <p>検索したい商品を入力してください</p>
-      <input type="text" v-model="textInput">
-      <input type="submit" value="検索" @click="showResult">
+      <input type="text" v-model="textInput"/>
+      <input type="submit" value="検索" @click="showResult"/>
       <p>{{ textInput }}</p>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from "vue-property-decorator";
-import Methods from '../server/methods'
-import axios from "axios";
+import Methods from '../server/methods';
 
 @Component
 export default class Search extends Vue {
@@ -21,7 +20,7 @@ export default class Search extends Vue {
   サーバーからAPI処理結果を受け取る
   */
   async showResult(){
-   const response = await Methods.testPosting();
+   const response = await Methods.sendParams("自転車");
    this.textInput = response.data;
   }
 }
@@ -29,18 +28,5 @@ export default class Search extends Vue {
 
 
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
+
 </style>
