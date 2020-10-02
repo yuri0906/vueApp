@@ -8,11 +8,13 @@ app.use(cors())
 
 const axios = require("axios");
 const url = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?";
+const api = require("./password/apiID");
+
 
 app.post('/',function(req, res) {
   axios.get(url,{
     params:{ //paramを追加
-      "applicationId" : "XXXXXXXXXXXX",
+      "applicationId" : api.id,
       "keyword" : req.body.text //キーワードを取得
     }
   })
