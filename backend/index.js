@@ -1,6 +1,6 @@
 const express = require('express')
 const bodyParser = require('body-parser')
-const cors = require('cors')
+const cors = require('cors') // corsポリシーに抵触するため、その対策としてcorsを利用する
 
 const app = express()
 app.use(bodyParser.json())
@@ -11,13 +11,13 @@ const url = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?"
 
 app.post('/',function(req, res) {
   axios.get(url,{
-    params:{
-      "applicationId" : "XXXXXXXXX",
-      "keyword" : req.body.text
+    params:{ //paramを追加
+      "applicationId" : "XXXXXXXXXXXX",
+      "keyword" : req.body.text //キーワードを取得
     }
   })
     .then((response) => {
-      res.send(response.data);
+      res.send(response.data); 
     })
     .catch((e) => {
       res.send(e);
