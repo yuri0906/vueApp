@@ -11,5 +11,7 @@ app.post('/', function(req, res) {
       message: req.body.text
     })
 })
+
+//API呼び出し処理実装する
   
 app.listen(process.env.PORT || 3000)

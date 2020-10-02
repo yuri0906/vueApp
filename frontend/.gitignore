@@ -2,6 +2,8 @@
 node_modules
 /dist
 
+#IDパスワード,URL関連(後にサーバー側に移行後、削除)
+/src/password
 
 # local env files
 .env.local

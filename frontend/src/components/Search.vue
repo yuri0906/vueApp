@@ -12,15 +12,18 @@
 import { Component, Emit, Prop, Vue } from "vue-property-decorator";
 //import Methods from '../server/methods'
 import axios from "axios";
+import {url} from "../password/id-pwd"; //URL,IDは別ファイルで管理
+
 
 @Component
 export default class Search extends Vue {
   public textInput = "";
   
-  //楽天API呼び出し処理、レスポンスをtextInputに代入
+  /*
+  API呼び出し処理
+  サーバーサイドで実装後は、パラメータ送信のみの挙動へ変更する
+  */
   async showResult(){
-   const url = "XXXXXXXXXXXXXXXXXXX";
-   
    //let response = await Methods.testPosting();
    await axios.get(url)
       .then((response) => {
@@ -30,8 +33,6 @@ export default class Search extends Vue {
         this.textInput = e;
       }); 
   }
-  
-
 }
 </script>
 
