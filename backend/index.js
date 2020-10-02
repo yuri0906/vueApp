@@ -6,12 +6,19 @@ const app = express()
 app.use(bodyParser.json())
 app.use(cors())
 
+const url = require("./password/id-pwd");
+const axios = require("axios");
+
 app.post('/', function(req, res) {
-    res.send({
-      message: req.body.text
+  axios.get(url)
+    .then((response) => {
+      res.send(response);
     })
+    .catch((e) => {
+      console.log(e);
+      res.send(e);
+    });
 })
 
-//API呼び出し処理実装する
   
 app.listen(process.env.PORT || 3000)

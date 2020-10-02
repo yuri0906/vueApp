@@ -10,28 +10,19 @@
 
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from "vue-property-decorator";
-//import Methods from '../server/methods'
+import Methods from '../server/methods'
 import axios from "axios";
-import {url} from "../password/id-pwd"; //URL,IDは別ファイルで管理
-
 
 @Component
 export default class Search extends Vue {
   public textInput = "";
   
   /*
-  API呼び出し処理
-  サーバーサイドで実装後は、パラメータ送信のみの挙動へ変更する
+  サーバーからAPI処理結果を受け取る
   */
   async showResult(){
-   //let response = await Methods.testPosting();
-   await axios.get(url)
-      .then((response) => {
-        this.textInput = response.data.Items[0].Item["itemName"];
-      })
-      .catch((e) => {
-        this.textInput = e;
-      }); 
+   const response = await Methods.testPosting();
+   this.textInput = response.data;
   }
 }
 </script>
