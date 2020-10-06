@@ -12,20 +12,10 @@ const api = require("./api/callAPI");
 const apiKey = require("./password/apiID"); //apiID取得用ファイル
 
 
-app.post('/',function(req, res) {
-  axios.get(url,{
-    params:{ //paramを追加
-      "applicationId" : apiKey.rakuten, //楽天APIのID取得
-      "keyword" : req.body.text //キーワードを取得
-    }
+app.post('/',(req, res) => {
+  api.searchProduct(req.body.text).then(result => {
+    res.send(result);
   })
-    .then((response) => {
-      res.send(response.data);
-      
-    })
-    .catch((e) => {
-      res.send(e);
-    });
 })
 
 app.listen(process.env.PORT || 3000)
