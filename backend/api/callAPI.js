@@ -3,7 +3,7 @@ API呼び出し処理実装
 */
 
 const axios = require("axios"); 
-const apiURL = require("../password/url");
+const apiURL = require("../password/url"); //apiURL取得用ファイル
 const apiKey = require("../password/apiID"); //apiID取得用ファイル
 
 //商品を検索し、その説明文(itemCaptionを抽出する)
