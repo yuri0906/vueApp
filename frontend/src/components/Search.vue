@@ -4,7 +4,6 @@
       <p>検索したい商品を入力してください</p>
       <input type="text" v-model="textInput"/>
       <input type="submit" value="検索" @click="showResult"/>
-      <p>検索結果?件</p>
       <p>{{ result }}</p>
   </div>
 </template>

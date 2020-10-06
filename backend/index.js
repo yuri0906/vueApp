@@ -6,15 +6,13 @@ const app = express()
 app.use(bodyParser.json())
 app.use(cors())
 
-const axios = require("axios");
-const url = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?";
-const api = require("./api/callAPI");
-const apiKey = require("./password/apiID"); //apiID取得用ファイル
-
+const api = require("./api/callAPI"); //API呼び出し処理ファイル
 
 app.post('/',(req, res) => {
-  api.searchProduct(req.body.text).then(result => {
-    res.send(result);
+  api.searchProduct(req.body.text).then(captionList => {
+    api.extractKeyphrase(captionList[0]).then(result => { //テスト用に最初の値だけ処理
+      res.send(result);
+    });
   })
 })
 
