@@ -3,8 +3,8 @@ API呼び出し処理実装
 */
 
 const axios = require("axios"); 
-const apiURL = require("../password/url"); //apiURL取得用ファイル
-const apiKey = require("../password/apiID"); //apiID取得用ファイル
+const apiURL = require("../secret/url"); //apiURL取得用ファイル
+const apiKey = require("../secret/apiID"); //apiID取得用ファイル
 
 //商品を検索し、その説明文(itemCaptionを抽出する)
 exports.searchProduct = async(keyword) => { 
@@ -31,8 +31,8 @@ exports.extractKeyphrase = async(sentence) => {
     const result = await axios.get(apiURL.yahoo,{
         params:{ //paramを追加
           "appid" : apiKey.yahoo, //YahooAPIのID取得
-          "sentence" : sentence,
-          "output" : "json"
+          "sentence" : sentence, //商品説明欄
+          "output" : "json" //レスポンスはJSON形式を選択
         }
       }).catch((err) => {
         console.log('error occured in yahoo api!!!');
