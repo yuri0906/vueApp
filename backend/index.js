@@ -8,6 +8,7 @@ app.use(cors())
 
 const axios = require("axios");
 const url = "https://app.rakuten.co.jp/services/api/IchibaItem/Search/20170706?";
+const api = require("./api/callAPI");
 const apiKey = require("./password/apiID"); //apiID取得用ファイル
 
 
@@ -19,7 +20,8 @@ app.post('/',function(req, res) {
     }
   })
     .then((response) => {
-      res.send(response.data); 
+      res.send(response.data);
+      
     })
     .catch((e) => {
       res.send(e);
