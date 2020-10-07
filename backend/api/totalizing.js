@@ -25,10 +25,10 @@ exports.totalScoreList = async(searchWord) => {
     for(listkey in calcList){
         const currentList = calcList[listkey];
         for(wordkey in currentList){
-            if(wordkey in scoreList){
-                scoreList[wordkey] += currentList[wordkey];
-            }else{
-                scoreList[wordkey] = currentList[wordkey];
+            if(wordkey in scoreList){ //すでにキーワードが存在する場合
+                scoreList[wordkey] += currentList[wordkey]; //スコアを加算する
+            }else{ //キーワードが存在しない場合
+                scoreList[wordkey] = currentList[wordkey]; //新しくキーワードとスコアを挿入する
             }
         }
     }
