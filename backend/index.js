@@ -6,7 +6,7 @@ const app = express()
 app.use(bodyParser.json())
 app.use(cors())
 
-const ranking = require("./api/totalize"); //集計結果計算ファイル
+const ranking = require("./api/totalizing"); //集計結果計算ファイル
 
 app.post('/',(req, res) => {
   ranking.totalScoreList(req.body.text).then(totalList => {
