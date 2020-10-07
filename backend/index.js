@@ -6,13 +6,11 @@ const app = express()
 app.use(bodyParser.json())
 app.use(cors())
 
-const api = require("./api/callAPI"); //API呼び出し処理ファイル
+const ranking = require("./api/totalize"); //集計結果計算ファイル
 
 app.post('/',(req, res) => {
-  api.searchProduct(req.body.text).then(captionList => {
-    api.extractKeyphrase(captionList[0]).then(result => { //テスト用に最初の値だけ処理
-      res.send(result);
-    });
+  ranking.totalScoreList(req.body.text).then(totalList => {
+    res.send(totalList);
   })
 })
 

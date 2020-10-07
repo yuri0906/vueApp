@@ -15,7 +15,7 @@ exports.searchProduct = async(keyword) => {
         "keyword" : keyword //キーワードを取得
       }
     }).catch((err) => {
-      console.log('error occured in rakuten api!!!');
+      console.log('楽天APIエラー' + err);
       return; 
     });
 
@@ -35,22 +35,8 @@ exports.extractKeyphrase = async(sentence) => {
       "output" : "json" //レスポンスはJSON形式を選択
     }
   }).catch((err) => {
-    console.log('error occured in yahoo api!!!');
+    console.log('YahooAPIエラー' + err);
     return; 
   });
   return result.data;
-}
-
-/*
-データ集計（未実装）
-*/
-exports.totalization = async(objlist) => {
-  return "";
-}
-
-/*
-グラフ化処理（未実装）
-*/
-exports.visualization = async(objlist) => {
-  return "";
 }
