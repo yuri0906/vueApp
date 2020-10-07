@@ -8,10 +8,11 @@ app.use(cors())
 
 const ranking = require("./api/totalizing"); //集計結果計算ファイル
 
-app.post('/',(req, res) => {
-  ranking.totalScoreList(req.body.text).then(totalList => {
-    res.send(totalList);
+app.post('/', async(req, res) => {
+  const totalList = await ranking.totalScoreList(req.body.text).then(result => {
+    return result;
   })
+  res.send(totalList);
 })
 
 app.listen(process.env.PORT || 3000)

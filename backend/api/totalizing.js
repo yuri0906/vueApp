@@ -3,34 +3,42 @@
 返し値のオブジェクトリテラルはindex.jsで使用
 */
 
-const api = require("./apiCalling"); //API呼び出し処理ファイル
-const _ = require("lodash"); //配列結合用集計ライブラリ
+const api = require("./apiCalling"); 
+const _ = require("lodash"); 
 
 exports.totalScoreList = async(searchWord) => {
-    const scoreList = {}; //トータルスコアのオブジェクトリテラル
-    const calcList = new Array(); // スコア計算用配列
+    const scoreList = {}; 
 
-    //検索キーワードにヒットした商品の説明リストを作成する
-    api.searchProduct(searchWord).then(captionList => {
-        for(caption in captionList){
-            //各商品説明からキーワードを抽出する
-            api.extractKeyphrase(captionList[caption]).then(result => { 
-                //トータルスコア計算用リストに結合
-                _.concat(calcList,result);
-            });
-        }
+    const captionList = await api.searchProduct(searchWord).then(result => {
+        return result;
     })
+
+    const calcList = await joinlist(captionList);
+
 
     //トータルスコアの計算処理
     for(listkey in calcList){
         const currentList = calcList[listkey];
         for(wordkey in currentList){
-            if(wordkey in scoreList){ //すでにキーワードが存在する場合
-                scoreList[wordkey] += currentList[wordkey]; //スコアを加算する
-            }else{ //キーワードが存在しない場合
-                scoreList[wordkey] = currentList[wordkey]; //新しくキーワードとスコアを挿入する
+            if(wordkey in scoreList){ 
+                scoreList[wordkey] += currentList[wordkey]; 
+            }else{ 
+                scoreList[wordkey] = currentList[wordkey]; 
+                
             }
         }
     }
     return scoreList; 
+}
+
+//オブジェクト結合処理
+async function joinlist(captionList) {
+    let calcList = new Array();
+    for(caption in captionList){
+        const list = await api.extractKeyphrase(captionList[caption]).then(result => {
+            return result;
+        })
+        calcList = _.concat(calcList,list);
+    }
+    return calcList;
 }
