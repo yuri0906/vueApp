@@ -1,42 +1,36 @@
 /*
 集計結果計算を実装
-計算結果の連想配列はindex.jsで使用
-（アルゴリズム結合未完成）
+返し値のオブジェクトリテラルはindex.jsで使用
+（※動作テスト未完了）
 */
 
-const api = require("./callAPI"); //API呼び出し処理ファイル
+const api = require("./apiCalling"); //API呼び出し処理ファイル
+const _ = require("lodash"); //配列結合用集計ライブラリ
 
 exports.totalScoreList = async(searchWord) => {
-    const scoreList = {};  
-    api.searchProduct(searchWord).then(captionList => {
+    const scoreList = {}; //トータルスコアのオブジェクトリテラル
+    const calcList = new Array(); // スコア計算用配列
+
+    //検索キーワードにヒットした商品の説明リストを作成する
+    await api.searchProduct(searchWord).then(captionList => {
         for(caption in captionList){
-            api.extractKeyphrase(captionList[caption]).then(result => { 
-                
+            //各商品説明からキーワードを抽出する
+            await api.extractKeyphrase(captionList[caption]).then(result => { 
+                //トータルスコア計算用リストに結合
+                _.concat(calcList,result);
             });
         }
     })
-    return scoreList;
-}
 
-/*
-各スコアリストを結合
-_.concat(result1,result2);
-
-async function totalization(result3){
-    const list = await result3;
-    const newList = {};
     for(listkey in list){
         const currentList = list[listkey];
         for(wordkey in currentList){
-            if(wordkey in newList){
-                newList[wordkey] += currentList[wordkey];
+            if(wordkey in scoreList){
+                scoreList[wordkey] += currentList[wordkey];
             }else{
-                newList[wordkey] = currentList[wordkey];
+                scoreList[wordkey] = currentList[wordkey];
             }
         }
     }
-    console.log(newList);
+    return scoreList;
 }
-
-totalization(testAsync());
-*/
