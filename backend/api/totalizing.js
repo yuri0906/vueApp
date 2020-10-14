@@ -11,13 +11,12 @@ exports.calcScore = async(searchWord) => {
         return result;
     })
     const calcList = await joinlist(itemCaptionList); 
-
-    const scoreList = []; 
-
+    
     for(listkey in calcList){
         const currentList = calcList[listkey];
         for(wordkey in currentList){
-            if(scoreList.some(result=>result.word===wordkey)){ 
+            const hasWord = scoreList.some(result=>result.word===wordkey);
+            if(hasWord){ 
                 scoreList.find(result=>result.word===wordkey).score += currentList[wordkey];
             }else{ 
                 scoreList.push({word: wordkey, score: currentList[wordkey]}); 
@@ -36,7 +35,6 @@ async function joinlist(itemCaptionList) {
         })
         calcList = _.concat(calcList,keyphrases);
     }
-    
     return calcList; 
 }
 
