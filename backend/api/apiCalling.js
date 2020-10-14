@@ -22,7 +22,7 @@ exports.searchProduct = async(keyword) => {
   const items = result.data["Items"]; 
   const itemCaptionList = []; 
   for(let i in items){
-      itemCaptionList[i] = items[i].Item["itemCaption"]; //=["~","~","~",....,"~"]
+      itemCaptionList[i] = items[i].Item["itemCaption"]; 
   }
   return itemCaptionList;
 }

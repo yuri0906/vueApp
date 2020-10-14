@@ -36,7 +36,7 @@ async function joinlist(itemCaptionList) {
         })
         calcList = _.concat(calcList,keyphrases);
     }
-    //console.log(_.flatten(calcList));
-    return calcList; //=[]
+    
+    return calcList; 
 }
 
