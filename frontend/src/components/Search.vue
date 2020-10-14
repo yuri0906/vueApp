@@ -21,8 +21,9 @@ export default class Search extends Vue {
   サーバーへリクエスト送信、レスポンス（API処理結果）を受け取る
   */
   async showResult(){
-   const response = await Methods.sendParams(this.textInput);
-   this.result = response.data;
+    const response = await Methods.sendParams(this.textInput);
+    this.result = response.data;
+    //ランキング表示
   }
 }
 </script>

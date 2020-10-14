@@ -29,15 +29,16 @@ exports.searchProduct = async(keyword) => {
 
 //与えられたテキスト(商品説明)中のキーフレーズを抽出する
 exports.extractKeyphrase = async(sentence) => {
-  const result = await axios.get(apiURL.yahoo,{
-    params:{ 
-      "appid" : apiKey.yahoo, 
-      "sentence" : sentence, 
-      "output" : "json" 
-    }
-  }).catch((err) => {
-    console.log('YahooAPIエラー' + err);
-    return; 
-  });
+  const params = new URLSearchParams();
+  params.append("appid",apiKey.yahoo);
+  params.append("sentence",sentence);
+  params.append("output","json");
+
+  //414エラーが発生したため、POSTに変更
+  const result = await axios.post(apiURL.yahoo, params
+    ).catch((err) => {
+      console.log('楽天APIエラー' + err);
+      return; 
+    });
   return result.data;
 }

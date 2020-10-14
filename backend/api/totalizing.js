@@ -5,29 +5,29 @@
 
 const api = require("./apiCalling"); 
 const _ = require("lodash"); 
+const { result } = require("lodash");
 
 exports.totalScoreList = async(searchWord) => {
-    const scoreList = {}; 
-
     const captionList = await api.searchProduct(searchWord).then(result => {
         return result;
     })
-
-    const calcList = await joinlist(captionList);
-
+    const calcList = await joinlist(captionList); //各captionあたりのキーフレーズの集合体
+    const scoreList = []; 
 
     //トータルスコアの計算処理
+    //ソートを行うため、オブジェクト配列に変更
     for(listkey in calcList){
         const currentList = calcList[listkey];
         for(wordkey in currentList){
-            if(wordkey in scoreList){ 
-                scoreList[wordkey] += currentList[wordkey]; 
+            if(scoreList.some(result=>result.word===wordkey)){ 
+                scoreList.find(result=>result.word===wordkey).score += currentList[wordkey];
             }else{ 
-                scoreList[wordkey] = currentList[wordkey]; 
-                
+                scoreList.push({word: wordkey, score: currentList[wordkey]}); 
             }
         }
     }
+    //todo:リストのソート
+
     return scoreList; 
 }
 
@@ -42,3 +42,7 @@ async function joinlist(captionList) {
     }
     return calcList;
 }
+
+//トータルスコアの計算処理
+
+//リストソート処理
