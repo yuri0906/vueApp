@@ -2,20 +2,18 @@
 集計結果計算を実装
 返し値のオブジェクトリテラルはindex.jsで使用
 */
-
 const api = require("./apiCalling"); 
 const _ = require("lodash"); 
 const { result } = require("lodash");
 
-exports.totalScoreList = async(searchWord) => {
-    const captionList = await api.searchProduct(searchWord).then(result => {
+exports.calcScore = async(searchWord) => {
+    const itemCaptionList = await api.searchProduct(searchWord).then(result => {
         return result;
     })
-    const calcList = await joinlist(captionList); //各captionあたりのキーフレーズの集合体
+    const calcList = await joinlist(itemCaptionList); 
+
     const scoreList = []; 
 
-    //トータルスコアの計算処理
-    //ソートを行うため、オブジェクト配列に変更
     for(listkey in calcList){
         const currentList = calcList[listkey];
         for(wordkey in currentList){
@@ -26,23 +24,19 @@ exports.totalScoreList = async(searchWord) => {
             }
         }
     }
-    //todo:リストのソート
-
-    return scoreList; 
+    return _.sortBy(scoreList,"score").reverse();
 }
 
 //オブジェクト結合処理
-async function joinlist(captionList) {
+async function joinlist(itemCaptionList) {
     let calcList = new Array();
-    for(caption in captionList){
-        const list = await api.extractKeyphrase(captionList[caption]).then(result => {
+    for(itemCaption in itemCaptionList){
+        const keyphrases = await api.extractKeyphrase(itemCaptionList[itemCaption]).then(result => {
             return result;
         })
-        calcList = _.concat(calcList,list);
+        calcList = _.concat(calcList,keyphrases);
     }
-    return calcList;
+    //console.log(_.flatten(calcList));
+    return calcList; //=[]
 }
 
-//トータルスコアの計算処理
-
-//リストソート処理

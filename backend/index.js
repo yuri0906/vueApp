@@ -6,13 +6,13 @@ const app = express()
 app.use(bodyParser.json())
 app.use(cors())
 
-const ranking = require("./api/totalizing"); //集計結果計算ファイル
+const scoreList = require("./api/totalizing"); //集計結果計算ファイル
 
 app.post('/', async(req, res) => {
-  const totalList = await ranking.totalScoreList(req.body.text).then(result => {
+  const ranking = await scoreList.calcScore(req.body.text).then(result => {
     return result;
   })
-  res.send(totalList);
+  res.send(ranking);
 })
 
 app.listen(process.env.PORT || 3000)

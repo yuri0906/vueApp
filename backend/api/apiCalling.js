@@ -8,30 +8,30 @@ const apiKey = require("../secret/apiID");
 
 //商品を検索し、その説明文(itemCaptionを抽出する)
 exports.searchProduct = async(keyword) => { 
-  const captionList = new Array(); 
   const result = await axios.get(apiURL.rakuten,{
-      params:{ 
-        "applicationId" : apiKey.rakuten, 
-        "keyword" : keyword 
-      }
-    }).catch((err) => {
-      console.log('楽天APIエラー' + err);
-      return; 
-    });
+    params:{ 
+      "applicationId" : apiKey.rakuten, 
+      "keyword" : keyword 
+    }
+  }).catch((err) => {
+    console.log('楽天APIエラー' + err);
+    return; 
+  });
   
   //各商品の説明文を配列に追加
   const items = result.data["Items"]; 
+  const itemCaptionList = []; 
   for(let i in items){
-      captionList[i] = items[i].Item["itemCaption"]; 
+      itemCaptionList[i] = items[i].Item["itemCaption"]; //=["~","~","~",....,"~"]
   }
-  return captionList;
+  return itemCaptionList;
 }
 
 //与えられたテキスト(商品説明)中のキーフレーズを抽出する
-exports.extractKeyphrase = async(sentence) => {
+exports.extractKeyphrase = async(itemCaption) => {
   const params = new URLSearchParams();
   params.append("appid",apiKey.yahoo);
-  params.append("sentence",sentence);
+  params.append("sentence",itemCaption);
   params.append("output","json");
 
   //414エラーが発生したため、POSTに変更
