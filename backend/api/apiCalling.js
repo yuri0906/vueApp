@@ -37,7 +37,7 @@ exports.extractKeyphrase = async(itemCaption) => {
   //414エラーが発生したため、POSTに変更
   const result = await axios.post(apiURL.yahoo, params
     ).catch((err) => {
-      console.log('楽天APIエラー' + err);
+      console.log('YahooAPIエラー' + err);
       return; 
     });
   return result.data;
