@@ -25,6 +25,19 @@ exports.calcScore = async(searchWord) => {
             }
         }
     }
+
+    /*
+    _.chain(keyphraseList)
+        .map(_.toPairs)
+        .flatten()
+        .groupBy(_.head)
+        .toPairs()
+        .map((it) => [it[0], _.sumBy(it[1], _.last)])
+        .fromPairs()
+        .value()
+    ソート、Vue側の実装未完了のため、コメントアウト
+    */
+
     return _.sortBy(scoreList,"score").reverse();
 }
 
