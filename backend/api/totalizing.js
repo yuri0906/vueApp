@@ -9,32 +9,35 @@ const { result } = require("lodash");
 exports.calcScore = async(searchWord) => {
     const itemCaptionList = await api.searchProduct(searchWord).then(result => {
         return result;
-    })
-    const calcList = await joinlist(itemCaptionList); 
-    
-    for(listkey in calcList){
-        const currentList = calcList[listkey];
-        for(wordkey in currentList){
-            const hasWord = scoreList.some(result=>result.word===wordkey);
-            if(hasWord){ 
-                scoreList.find(result=>result.word===wordkey).score += currentList[wordkey];
+    }) 
+
+    const keyphraseList = await joinKeyphraseList(itemCaptionList);  
+
+    let scoreList = [];
+    for(i in keyphraseList){ 
+        const currentList = keyphraseList[i];
+        for(j in currentList){ 
+            const element = scoreList.find(result=>result.word===j); 
+            if(element){ 
+                element.score += currentList[j];
             }else{ 
-                scoreList.push({word: wordkey, score: currentList[wordkey]}); 
+                scoreList.push({word: j, score: currentList[j]}); 
             }
         }
     }
     return _.sortBy(scoreList,"score").reverse();
 }
 
-//オブジェクト結合処理
-async function joinlist(itemCaptionList) {
-    let calcList = new Array();
+//各説明文からキーワード抽出し、配列にまとめる
+async function joinKeyphraseList(itemCaptionList) {
+    let keyphraseList = [];
     for(itemCaption in itemCaptionList){
-        const keyphrases = await api.extractKeyphrase(itemCaptionList[itemCaption]).then(result => {
-            return result;
+        const keyphrases = await api.extractKeyphrase(itemCaptionList[itemCaption]
+            ).then(result => {
+                return result;
         })
-        calcList = _.concat(calcList,keyphrases);
+        keyphraseList = _.concat(keyphraseList,keyphrases);
     }
-    return calcList; 
+    return keyphraseList; 
 }
 
