@@ -9,42 +9,26 @@ const { result } = require("lodash");
 exports.calcScore = async(searchWord) => {
     const itemCaptionList = await api.searchProduct(searchWord).then(result => {
         return result;
-    }) 
+    });
 
     const keyphraseList = await joinKeyphraseList(itemCaptionList);  
 
-    let scoreList = [];
-    for(i in keyphraseList){ 
-        const currentList = keyphraseList[i];
-        for(j in currentList){ 
-            const element = scoreList.find(result=>result.word===j); 
-            if(element){ 
-                element.score += currentList[j];
-            }else{ 
-                scoreList.push({word: j, score: currentList[j]}); 
-            }
-        }
-    }
-
-    /*
-    _.chain(keyphraseList)
+    const scoreList = _.chain(keyphraseList)
         .map(_.toPairs)
         .flatten()
         .groupBy(_.head)
         .toPairs()
-        .map((it) => [it[0], _.sumBy(it[1], _.last)])
-        .fromPairs()
-        .value()
-    ソート、Vue側の実装未完了のため、コメントアウト
-    */
+        .map((it) => [{word:it[0], score:_.sumBy(it[1], _.last)}])
+        .flatten()
+        .value();
 
     return _.sortBy(scoreList,"score").reverse();
 }
 
 //各説明文からキーワード抽出し、配列にまとめる
-async function joinKeyphraseList(itemCaptionList) {
+async function joinKeyphraseList(itemCaptionList){
     let keyphraseList = [];
-    for(itemCaption in itemCaptionList){
+    for(itemCaption in itemCaptionList){ 
         const keyphrases = await api.extractKeyphrase(itemCaptionList[itemCaption]
             ).then(result => {
                 return result;

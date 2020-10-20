@@ -4,9 +4,10 @@
       <p>検索したい商品を入力してください</p>
       <input type="text" v-model="textInput"/>
       <input type="submit" value="検索" @click="receiveData"/>
+      
       <div id="ranking" v-if="show">
         <ol>
-          <li v-for="n of 20" :key="n">{{wordRanking[n].word}}</li>
+          <li v-for="n of 10" :key="n">{{wordRanking[n].word}}</li>
         </ol>
       </div>
   </div>

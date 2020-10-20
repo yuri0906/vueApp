@@ -14,7 +14,7 @@ exports.searchProduct = async(keyword) => {
       "keyword" : keyword 
     }
   }).catch((err) => {
-    console.log('楽天APIエラー' + err);
+    console.log(err);
     return; 
   });
   
@@ -22,6 +22,9 @@ exports.searchProduct = async(keyword) => {
   const items = result.data["Items"]; 
   const itemCaptionList = []; 
   for(let i in items){
+      if(!items[i].Item["itemCaption"]){ //商品説明文の空文字判定
+        continue;
+      }
       itemCaptionList[i] = items[i].Item["itemCaption"]; 
   }
   return itemCaptionList;
@@ -37,8 +40,8 @@ exports.extractKeyphrase = async(itemCaption) => {
   //414エラーが発生したため、POSTに変更
   const result = await axios.post(apiURL.yahoo, params
     ).catch((err) => {
-      console.log('YahooAPIエラー' + err);
-      return; 
+      console.log(err.response.data);
+      return ;
     });
   return result.data;
 }
