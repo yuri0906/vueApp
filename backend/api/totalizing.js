@@ -1,6 +1,6 @@
 /*
 集計結果計算を実装
-返し値のオブジェクトリテラルはindex.jsで使用
+返し値のオブジェクトはindex.jsで使用
 */
 const api = require("./apiCalling"); 
 const _ = require("lodash"); 
