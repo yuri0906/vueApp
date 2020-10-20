@@ -10,9 +10,17 @@ exports.calcScore = async(searchWord) => {
     const itemCaptionList = await api.searchProduct(searchWord).then(result => {
         return result;
     });
+    
 
-    const keyphraseList = await joinKeyphraseList(itemCaptionList);  
-
+    let keyphraseList = [];
+    for(itemCaption in itemCaptionList){ 
+        const keyphrases = await api.extractKeyphrase(itemCaptionList[itemCaption]
+            ).then(result => {
+                return result;
+        })
+        keyphraseList = _.concat(keyphraseList,keyphrases);
+    }
+    
     const scoreList = _.chain(keyphraseList)
         .map(_.toPairs)
         .flatten()
@@ -25,16 +33,4 @@ exports.calcScore = async(searchWord) => {
     return _.sortBy(scoreList,"score").reverse();
 }
 
-//各説明文からキーワード抽出し、配列にまとめる
-async function joinKeyphraseList(itemCaptionList){
-    let keyphraseList = [];
-    for(itemCaption in itemCaptionList){ 
-        const keyphrases = await api.extractKeyphrase(itemCaptionList[itemCaption]
-            ).then(result => {
-                return result;
-        })
-        keyphraseList = _.concat(keyphraseList,keyphrases);
-    }
-    return keyphraseList; 
-}
 
