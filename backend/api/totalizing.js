@@ -7,10 +7,10 @@ const _ = require("lodash");
 const { result } = require("lodash");
 
 exports.calcScore = async(searchWord) => {
-    const itemCaptionList = await api.searchProduct(searchWord).then(result => {
-        return result;
-    });
-    
+    const itemCaptionList = await api.searchProduct(searchWord
+        ).then(result => {
+            return result;
+        });
 
     let keyphraseList = [];
     for(itemCaption in itemCaptionList){ 

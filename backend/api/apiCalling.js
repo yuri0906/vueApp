@@ -15,7 +15,7 @@ exports.searchProduct = async(keyword) => {
     }
   }).catch((err) => {
     console.log(err);
-    return; 
+    return err; 
   });
   
   //各商品の説明文を配列に追加
@@ -41,7 +41,7 @@ exports.extractKeyphrase = async(itemCaption) => {
   const result = await axios.post(apiURL.yahoo, params
     ).catch((err) => {
       console.log(err.response.data);
-      return ;
+      return err;
     });
   return result.data;
 }
