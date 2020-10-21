@@ -14,7 +14,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Emit, Prop, Vue } from "vue-property-decorator";
+import { Component,Vue } from "vue-property-decorator";
 import Methods from '../server/methods';
 
 @Component
@@ -27,9 +27,13 @@ export default class Search extends Vue {
   サーバーへリクエスト送信、レスポンス（API処理結果）を受け取る
   */
   async receiveData(){
-    const response = await Methods.sendParams(this.textInput);
-    this.wordRanking = response.data;
-    this.show = true;
+    if(!this.textInput){
+      alert("キーワードを入力してください");
+    }else{
+        const response = await Methods.sendParams(this.textInput);
+        this.wordRanking = response.data;
+        this.show = true;
+    }
   }
 }
 </script>
