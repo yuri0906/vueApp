@@ -3,6 +3,7 @@ import {calcScore} from '../api/totalizing';
 
 describe("1.検索キーワードに関する商品説明リストの取得できる",() => {
     jest.setTimeout(30000);
+
     test("1-1:「Vue」", async()=>{
         const list = await searchProduct("Vue");
         expect.arrayContaining(list);
@@ -60,6 +61,8 @@ describe("3.入力した文章からキーワードを抽出できる",() => {
 });
 
 describe("4.空の値（文章）を入力するとプロパティが空のオブジェクトが返される",() => {
+    jest.setTimeout(30000);
+
     test("4:空文", async()=>{
         const obj = await extractKeyphrase(" ");
         expect(Object.keys(obj).length).toBe(0);
@@ -68,10 +71,11 @@ describe("4.空の値（文章）を入力するとプロパティが空のオ�
 
 describe("5.検索キーワードに関するキーワードのランキングが取得できる",() => {
     jest.setTimeout(30000);
+
     test("5-1:鬼滅の刃", async()=>{
         const list = await calcScore("鬼滅の刃");
         expect.arrayContaining(list);
-        list.forEach(element => {
+        list.forEach((element) => {
             expect.objectContaining(element);
         });
     });
@@ -79,16 +83,24 @@ describe("5.検索キーワードに関するキーワードのランキング�
     test("5-2:プロテイン", async()=>{
         const list = await calcScore("プロテイン");
         expect.arrayContaining(list);
-        list.forEach(element => {
+        list.forEach((element) => {
             expect.objectContaining(element);
         });
     });
 });
 
 describe("6.検索キーワードに異常値を入力するとエラーが発生する",() => {
+    jest.setTimeout(30000);
+
     test("6-1:空欄", async()=>{
+        return await calcScore(" ").catch(e => {
+            expect(e.message).toBe('error occured in rakutenAPI');
+        }); 
     });
     
     test("6-2:記号", async()=>{
+        return await calcScore("ふぁsg；fjbdcxdげ").catch(e => {
+            expect(e.message).toBe('error occured in rakutenAPI');
+        }); 
     });
 });
