@@ -13,7 +13,7 @@ exports.calcScore = async(searchWord) => {
         });
 
     let keyphraseList = [];
-    for(itemCaption in itemCaptionList){ 
+    for(var itemCaption in itemCaptionList){ 
         const keyphrases = await api.extractKeyphrase(itemCaptionList[itemCaption]
             ).then(result => {
                 return result;
