@@ -6,8 +6,9 @@
       <input type="submit" value="検索" @click="receiveData"/>
       
       <div id="ranking" v-if="show">
-        <ol>
-          <li v-for="n of 10" :key="n">{{wordRanking[n].word}}</li>
+        <p>{{textOutput}}</p>
+        <ol v-if="Object.keys(wordRanking).length>0">
+          <li v-for="n of 5" :key="n">{{wordRanking[n].word}}</li>
         </ol>
       </div>
   </div>
@@ -19,8 +20,9 @@ import Methods from '../server/methods';
 
 @Component
 export default class Search extends Vue {
-  public textInput = ""; //入力値
-  public wordRanking = ""; //出力値
+  public textInput!:string; //入力値
+  public textOutput!:string; //出力メッセージ
+  public wordRanking!:any; //出力値（ランキング）
   public show = false; 
   
   /*
@@ -29,9 +31,16 @@ export default class Search extends Vue {
   async receiveData(){
     if(!this.textInput){
       alert("キーワードを入力してください");
+    }else if(this.textInput.length > 64){
+      alert("検索文字数が多すぎます");
     }else{
         const response = await Methods.sendParams(this.textInput);
         this.wordRanking = response.data;
+        if(Object.keys(this.wordRanking).length===0){
+          this.textOutput = "キーワードにヒットする商品が見つかりませんでした";
+        }else{
+          this.textOutput = "重要語句ランキング";
+        }
         this.show = true;
     }
   }

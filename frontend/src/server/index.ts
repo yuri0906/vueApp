@@ -1,5 +1,5 @@
 /*
- API通信を行う為、axiosの設定をインスタンス化する
+API通信を行う為、axiosの設定をインスタンス化する
 */
 
 import axios from 'axios'

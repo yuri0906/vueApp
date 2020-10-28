@@ -17,7 +17,7 @@ exports.calcScore = async(searchWord) => {
         const keyphrases = await api.extractKeyphrase(itemCaptionList[itemCaption]
             ).then(result => {
                 return result;
-        })
+            });
         keyphraseList = _.concat(keyphraseList,keyphrases);
     }
     
