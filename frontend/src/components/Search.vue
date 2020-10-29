@@ -1,7 +1,5 @@
 <template>
   <div class="search">
-    <h1>楽天商品検索</h1>
-      <p>検索したい商品を入力してください</p>
       <input type="text" v-model="textInput"/>
       <input type="submit" value="検索" @click="receiveData"/>
       
