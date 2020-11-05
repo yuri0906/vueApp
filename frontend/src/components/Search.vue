@@ -1,8 +1,7 @@
 <template>
   <div class="search">
       <input type="text" v-model="textInput"/>
-      <input type="submit" value="検索" @click="receiveData"/>
-      
+      <input type="submit" value="検索" @click="receiveData"/> 
       <div id="ranking" v-if="show">
         <p>{{textOutput}}</p>
         <ol v-if="Object.keys(wordRanking).length>0">

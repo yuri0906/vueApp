@@ -1,21 +1,24 @@
 <template>
-    <div class="inputword">
-        <input type="text" placeholder="キーワードを入力" v-model="textInput"/>
-        <input type="submit" value="検索" @click="sendParams"/>
+    <div class="inputWord">
+        <input id="word" v-model="inputText" type="text" placeholder="キーワードを入力">
+        <input type="submit" value="検索" @click="setData"/> 
     </div>
 </template>
 
 <script lang="ts">
 import { Component,Vue,Emit, Prop } from "vue-property-decorator";
-import Methods from '../server/methods';
 
 @Component
 export default class InputWord extends Vue  {
-    @Prop()
-    textInput!:string;
+    public inputText = "";
 
-    sendParams(){
-        this.$emit("my-click",this.textInput);
+    @Emit()
+    public click(input:string){
+        console.log(input);
+    }
+
+    public setData(){
+        this.click(this.inputText);
     }
 }
 

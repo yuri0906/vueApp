@@ -1,14 +1,20 @@
 <template>
-    <div class="ranking">
-        <!--ランキング実装-->
+    <div class="ranking" >
+        <ol v-if="Object.keys(wordRanking).length>0">
+            <li v-for="n of 5" :key="n">{{wordRanking[n].word}}</li>
+        </ol>
     </div>
 </template>
 
 <script lang="ts">
-import { Component,Vue } from "vue-property-decorator";
+import { Component,Prop,Vue } from "vue-property-decorator";
 
 @Component
-export default class Title extends Vue  {}
+export default class Ranking extends Vue  {
+    @Prop()
+    public wordRanking!:any;
+}
+
 
 </script>
 
