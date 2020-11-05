@@ -10,13 +10,18 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
+    "chart.js": "^2.9.4",
     "core-js": "^3.6.5",
+    "dr-vue-echarts": "^1.0.13",
+    "lodash": "^4.17.20",
     "vue": "^2.6.11",
+    "vue-chartjs": "^3.5.1",
     "vue-class-component": "^7.2.3",
     "vue-property-decorator": "^8.4.2",
     "vue-router": "^3.2.0"
   },
   "devDependencies": {
+    "@types/chart.js": "^2.9.27",
     "@types/jest": "^26.0.15",
     "@typescript-eslint/eslint-plugin": "^2.33.0",
     "@typescript-eslint/parser": "^2.33.0",

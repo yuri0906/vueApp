@@ -2,9 +2,9 @@
     <div class="appPage">
         <h1>楽天商品検索＋YahooテキストAPIを使った簡易アプリ</h1>
         <InputWord @click="receiveData"/>
-        <div  v-if="show">
+        <div v-if="show&&Object.keys(wordRanking).length>0">
             <Ranking :wordRanking="wordRanking"/>
-            <Gragh/>
+            <Graph :wordRanking="wordRanking"/>
         </div>
     </div>
 </template>
@@ -14,11 +14,11 @@ import { Component,Prop,Vue } from "vue-property-decorator";
 import Methods from '../server/methods';
 import Ranking from "@/components/Ranking.vue";
 import InputWord from "@/components/InputWord.vue";
-import Gragh from "@/components/Gragh.vue";
+import Graph from "@/components/Graph.vue";
 
 @Component({
     components: {
-        InputWord,Ranking,Gragh
+        InputWord,Ranking,Graph
     }
 })
 
@@ -37,7 +37,11 @@ export default class AppPage extends Vue  {
         }else{
             const response = await Methods.sendParams(this.inputText);
             this.wordRanking = response.data;
-            this.show = true;
+            if(Object.keys(this.wordRanking).length==0){
+                alert("商品が見つかりませんでした");
+            }else{
+                this.show = true;
+            }
         }
     }
 }
