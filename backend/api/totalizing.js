@@ -4,7 +4,6 @@
 */
 const api = require("./apiCalling"); 
 const _ = require("lodash"); 
-const { result } = require("lodash");
 
 exports.calcScore = async(searchWord) => {
     const itemCaptionList = await api.searchProduct(searchWord
