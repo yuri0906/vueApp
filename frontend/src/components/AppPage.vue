@@ -3,8 +3,8 @@
         <h1>楽天商品検索＋YahooテキストAPIを使った簡易アプリ</h1>
         <InputWord @click="receiveData"/>
         <div v-if="show">
-            <Ranking :ranking="ranking" :input="input"/>
-            <Graph :ranking="ranking" :input="input"/>
+            <Ranking :ranking="ranking"/>
+            <Graph :ranking="ranking"/>
         </div>
     </div>
 </template>
@@ -25,8 +25,7 @@ import Graph from "@/components/Graph.vue";
 export default class AppPage extends Vue  {
     public input= "";
     public show = false;
-    public ranking!:any;
-
+    public ranking = [];
 
     public async receiveData(input:string){
         this.input = input;
