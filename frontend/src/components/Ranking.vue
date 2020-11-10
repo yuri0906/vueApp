@@ -1,5 +1,5 @@
 <template>
-    <div class="ranking" >
+    <div class="ranking">
         <ol>
             <li v-for="(item,index) in limitCount" :key="index">{{item.word}}</li>
         </ol>
@@ -7,17 +7,19 @@
 </template>
 
 <script lang="ts">
-import { Component,Prop,Vue } from "vue-property-decorator";
+import { Component,Prop,Vue,Watch } from "vue-property-decorator";
 
 @Component
 export default class Ranking extends Vue  {
     @Prop()
-    public wordRanking!:any;
+    public ranking!:any;
+
+    @Prop()
+    public input!:string;
 
     get limitCount(){
-        return this.wordRanking.slice(0,10);
-    }
-    // <ol v-if="Object.keys(wordRanking).length>0">
+        return this.ranking.slice(0,10);
+    } 
 }
 
 

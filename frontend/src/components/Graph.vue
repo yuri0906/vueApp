@@ -1,6 +1,6 @@
 <template>
     <div class="graph">
-        <BarChart :labels="labels" :datas="datas" />
+        <BarChart :labels="labels" :datas="datas" :chart-data="chartData"/>
     </div>
 </template>
 
@@ -17,12 +17,12 @@ import Ranking from "./Ranking.vue";
 
 export default class Graph extends Vue  {
     @Prop()
-    public wordRanking!:any;
+    public ranking!:any;
 
     get labels(){
         const label = []
         for(let i=0;i<10;i++){
-            label.push(this.wordRanking[i].word);
+            label.push(this.ranking[i].word);
         }
         return label;
     }
@@ -30,10 +30,12 @@ export default class Graph extends Vue  {
     get datas(){
         const data = [];
         for(let i=0;i<10;i++){
-            data.push(this.wordRanking[i].score);
+            data.push(this.ranking[i].score);
         }
         return data;
     }
+
+    
 }
 </script>
 

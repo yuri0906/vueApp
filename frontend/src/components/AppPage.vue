@@ -2,9 +2,9 @@
     <div class="appPage">
         <h1>楽天商品検索＋YahooテキストAPIを使った簡易アプリ</h1>
         <InputWord @click="receiveData"/>
-        <div v-if="show&&Object.keys(wordRanking).length>0">
-            <Ranking :wordRanking="wordRanking"/>
-            <Graph :wordRanking="wordRanking"/>
+        <div v-if="show">
+            <Ranking :ranking="ranking" :input="input"/>
+            <Graph :ranking="ranking" :input="input"/>
         </div>
     </div>
 </template>
@@ -23,21 +23,21 @@ import Graph from "@/components/Graph.vue";
 })
 
 export default class AppPage extends Vue  {
-    public inputText= "";
+    public input= "";
     public show = false;
-    public wordRanking!:any;
+    public ranking!:any;
 
 
     public async receiveData(input:string){
-        this.inputText = input;
-        if(!this.inputText){
+        this.input = input;
+        if(!this.input){
             alert("キーワードを入力してください");
-        }else if(this.inputText.length > 64){
+        }else if(this.input.length > 64){
             alert("検索文字数が多すぎます");
         }else{
-            const response = await Methods.sendParams(this.inputText);
-            this.wordRanking = response.data;
-            if(Object.keys(this.wordRanking).length==0){
+            const response = await Methods.sendParams(this.input);
+            this.ranking = response.data;
+            if(Object.keys(this.ranking).length==0){
                 alert("商品が見つかりませんでした");
             }else{
                 this.show = true;
