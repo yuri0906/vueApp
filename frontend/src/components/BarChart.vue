@@ -6,10 +6,10 @@ import Chart from "chart.js";
 @Component
 export default class BarChart extends Mixins(Bar, mixins.reactiveProp){
     @Prop() 
-    public chartData!:Chart.ChartData;
+    public chartData!: Chart.ChartData;
 
     @Prop() 
-    public chartOptions!:Chart.ChartOptions;
+    public chartOptions!: Chart.ChartOptions;
 
     public mounted() {
         this.renderChart(this.chartData,this.chartOptions);

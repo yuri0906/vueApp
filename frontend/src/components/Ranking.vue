@@ -1,7 +1,7 @@
 <template>
     <div class="ranking">
         <ol>
-            <li v-for="(item,index) in ranking10" :key="index">{{item.word}}</li>
+            <li v-for="(item,index) in ranking10" :key="index">{{index}}位：{{item.word}}</li>
         </ol>
     </div>
 </template>

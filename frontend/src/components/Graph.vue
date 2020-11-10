@@ -22,11 +22,11 @@ export default class Graph extends Vue  {
     public chartData : Chart.ChartData = {}
     public chartOptions: Chart.ChartOptions = {}
 
-    public created(){
+    public created() {
         this.createChartData();
     }
 
-    public createChartData(){
+    public createChartData() {
         this.chartData = {
             labels: this.labels,
             datasets: [{
@@ -38,17 +38,17 @@ export default class Graph extends Vue  {
         }
     }
 
-    get labels(){
+    get labels() {
         const label = []
-        for(let i=0;i<10;i++){
+        for(let i = 0; i < 10; i++){
             label.push(this.ranking[i].word);
         }
         return label;
     }
 
-    get datas(){
+    get datas() {
         const data = [];
-        for(let i=0;i<10;i++){
+        for(let i = 0; i < 10; i++){
             data.push(this.ranking[i].score);
         }
         return data;
@@ -67,5 +67,4 @@ export default class Graph extends Vue  {
     margin-left: auto;
     margin-right: auto;
 }
-
 </style>
