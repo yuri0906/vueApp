@@ -1,8 +1,6 @@
 <template>
     <div class="ranking">
-        <ol>
-            <li v-for="(item,index) in ranking10" :key="index">{{index}}位：{{item.word}}</li>
-        </ol>
+        <div v-for="(item,index) in ranking10" :key="index">{{index+1}}位：{{item.word}}</div>
     </div>
 </template>
 

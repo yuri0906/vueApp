@@ -16,4 +16,3 @@ export default class BarChart extends Mixins(Bar, mixins.reactiveProp){
     }
 }
 </script>
-
