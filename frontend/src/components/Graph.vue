@@ -19,26 +19,30 @@ export default class Graph extends Vue  {
     @Prop()
     public ranking!:any;
 
-    public chartData : Chart.ChartData = {
-        labels: this.labels,
-        datasets: [
-            {
+    public chartData : Chart.ChartData = {}
+    public chartOptions: Chart.ChartOptions = {}
+
+    public created(){
+        this.createChartData();
+    }
+
+    public createChartData(){
+        this.chartData = {
+            labels: this.labels,
+            datasets: [{
                 label: "score",
                 type: "bar",
                 data: this.datas,
                 borderColor: "#AAFFAA"
-            }
-        ]
-    };
-
-    public chartOptions: Chart.ChartOptions = {}
+            }]
+        }
+    }
 
     get labels(){
         const label = []
         for(let i=0;i<10;i++){
             label.push(this.ranking[i].word);
         }
-        console.log("labelOK");
         return label;
     }
 
@@ -47,13 +51,12 @@ export default class Graph extends Vue  {
         for(let i=0;i<10;i++){
             data.push(this.ranking[i].score);
         }
-        console.log("dataOK");
         return data;
     }
 
     @Watch('ranking')
     onChartDataChanged() {
-        
+        this.createChartData();
     }
 }
 </script>
