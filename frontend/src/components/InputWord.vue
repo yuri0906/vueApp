@@ -1,7 +1,7 @@
 <template>
     <div class="input-word">
-        <input id="word" v-model="input" type="text" placeholder="キーワードを入力" data-username>
-        <input type="submit" value="検索" @click="setData" data-click> 
+        <input id="word" v-model="input" type="text" placeholder="キーワードを入力">
+        <input type="submit" value="検索" @click="setData"> 
     </div>
 </template>
 

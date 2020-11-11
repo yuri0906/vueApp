@@ -7,4 +7,10 @@ describe('入力フォーム部分テスト',()=>{
         expect(wrapper.find('.input-word').exists()).toBe(true)
     })
 
+    it('クリックすると入力テキストがemitされる', () => {
+        const wrapper = shallowMount(InputWord);
+        wrapper.setData({input: "テスト"});
+        (wrapper.vm as any).setData();
+        expect(wrapper.emitted().click).toEqual([['テスト']])
+    })
 })
