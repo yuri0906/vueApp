@@ -17,7 +17,6 @@ export default class InputWord extends Vue  {
         return this.input;
     }
 }
-
 </script>
 
 <style scoped>

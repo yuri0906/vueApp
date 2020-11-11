@@ -12,12 +12,10 @@ export default class WordRanking extends Vue  {
     @Prop()
     public ranking!:{word:string, score:number}[];
         
-    get ranking10(){
+    private get ranking10(){
         return this.ranking.slice(0,10);
     } 
 }
-
-
 </script>
 
 <style scoped>

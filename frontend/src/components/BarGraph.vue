@@ -19,12 +19,12 @@ export default class BarGraph extends Vue  {
     @Prop()
     public ranking!:{word:string, score:number}[];
 
-    get chartOptions(){
+    protected get chartOptions(){
         const chartOptions = {};
         return chartOptions;
     }
 
-    get chartData(){
+    protected get chartData(){
         const datas = this.ranking.slice(0,10).map(x => x.score);
         const labels = this.ranking.slice(0,10).map(x => x.word);
         const chartData = {

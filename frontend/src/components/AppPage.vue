@@ -23,18 +23,18 @@ import BarGraph from "@/components/BarGraph.vue";
 })
 
 export default class AppPage extends Vue  {
-    public input= "";
-    public show = false;
+    private input= "";
+    private show = false;
     public ranking = [];
 
     public async receiveData(input:string){
-        this.input = input;
-        if(!this.input){
+        //this.input = input;
+        if(!input){
             alert("キーワードを入力してください");
-        }else if(this.input.length > 64){
+        }else if(input.length > 64){
             alert("検索文字数が多すぎます");
         }else{
-            const response = await Methods.sendParams(this.input);
+            const response = await Methods.sendParams(input);
             this.ranking = response.data;
             if(Object.keys(this.ranking).length===0){
                 alert("商品が見つかりませんでした");
@@ -44,8 +44,6 @@ export default class AppPage extends Vue  {
         }
     }
 }
-
-
 </script>
 
 <style scoped>
