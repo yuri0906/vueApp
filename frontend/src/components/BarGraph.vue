@@ -16,7 +16,7 @@ import Chart from "chart.js";
 })
 
 export default class BarGraph extends Vue  {
-    @Prop()
+    @Prop({ type: Array, default: []}) 
     public ranking!:{word:string, score:number}[];
 
     protected get chartOptions(){

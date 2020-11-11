@@ -9,7 +9,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
 export default class WordRanking extends Vue  {
-    @Prop()
+    @Prop({ type: Array, default: []}) 
     public ranking!:{word:string, score:number}[];
         
     private get ranking10(){
