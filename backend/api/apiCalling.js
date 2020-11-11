@@ -14,7 +14,7 @@ exports.searchProduct = async(keyword) => {
       "keyword" : keyword 
     }
   }).catch((err) => {
-    console.log(err.response.data);
+    //console.log(err.response.data);
     throw new Error("error occured in rakutenAPI");
   });
   
@@ -40,7 +40,7 @@ exports.extractKeyphrase = async(itemCaption) => {
   //414エラーが発生したため、POSTに変更
   const result = await axios.post(apiURL.yahoo, params
     ).catch((err) => {
-      console.log(err.response.data);
+      //console.log(err.response.data);
       throw new Error("error occured in YahooAPI");
     });
   return result.data;
