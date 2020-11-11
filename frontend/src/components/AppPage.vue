@@ -1,24 +1,24 @@
 <template>
-    <div class="appPage">
+    <div class="app-page">
         <h1>楽天商品検索＋YahooテキストAPIを使った簡易アプリ</h1>
         <InputWord @click="receiveData"/>
         <div v-if="show">
-            <Ranking :ranking="ranking"/>
-            <Graph :ranking="ranking"/>
+            <WordRanking :ranking="ranking"/>
+            <BarGraph :ranking="ranking"/>
         </div>
     </div>
 </template>
 
 <script lang="ts">
-import { Component,Prop,Vue } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import Methods from '../server/methods';
-import Ranking from "@/components/Ranking.vue";
+import WordRanking from "@/components/WordRanking.vue";
 import InputWord from "@/components/InputWord.vue";
-import Graph from "@/components/Graph.vue";
+import BarGraph from "@/components/BarGraph.vue";
 
 @Component({
     components: {
-        InputWord,Ranking,Graph
+        InputWord,WordRanking,BarGraph
     }
 })
 
@@ -36,7 +36,7 @@ export default class AppPage extends Vue  {
         }else{
             const response = await Methods.sendParams(this.input);
             this.ranking = response.data;
-            if(Object.keys(this.ranking).length==0){
+            if(Object.keys(this.ranking).length===0){
                 alert("商品が見つかりませんでした");
             }else{
                 this.show = true;

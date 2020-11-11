@@ -6,6 +6,5 @@ describe('InputWord.vue',()=>{
     it('テキスト入力テスト',()=>{
         wrapper.find("word").setValue("プロテイン")
         wrapper.find("submit").trigger("click")
-        
     })
 })
