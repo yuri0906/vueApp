@@ -14,7 +14,6 @@ app.post('/', async(req, res) => {
       return result;
     })
     .catch(err =>{
-      console.log(Object.keys("aaa").length)
       return err;
     })
   res.send(ranking);

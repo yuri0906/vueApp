@@ -1,6 +1,6 @@
 <template>
     <div class="bar-graph">
-        <BarChart :chart-data="chartData"/>
+        <BarChart :chart-data="chartData" :chart-options="chartOptions"/>
     </div>
 </template>
 
@@ -19,12 +19,12 @@ export default class BarGraph extends Vue  {
     @Prop({ type: Array, default: []}) 
     public ranking!:{word:string, score:number}[];
 
-    /*
+    
     protected get chartOptions(){
         const chartOptions = {};
         return chartOptions;
     }
-    */
+    
 
     protected get chartData(){
         const datas = this.ranking.slice(0,10).map(x => x.score); 

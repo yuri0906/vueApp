@@ -18,7 +18,7 @@ const array = [
 
 describe('ランキング表示テスト',()=>{
     it('データをセットすると、グラフが描画される', () => {
-        const wrapper = mount(BarGraph,{
+        const wrapper = shallowMount(BarGraph,{
             propsData: {
                 ranking: array
             }
