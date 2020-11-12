@@ -1,4 +1,4 @@
-import { shallowMount, mount } from '@vue/test-utils'
+import { shallowMount } from '@vue/test-utils'
 import BarGraph from '../BarGraph.vue'
 
 const array = [
@@ -16,13 +16,13 @@ const array = [
     {word: "l", score: 0},
 ]
 
-describe('ランキング表示テスト',()=>{
-    it('データをセットすると、グラフが描画される', () => {
+describe('BarGraph.vue',()=>{
+    it('コンポーネント描画テスト', () => {
         const wrapper = shallowMount(BarGraph,{
             propsData: {
                 ranking: array
             }
         });
-        expect(wrapper.find('.bar-graph').exists()).toBe(true)
+        expect(wrapper.find('.bar-graph').exists()).toBeTruthy()
     })
 })

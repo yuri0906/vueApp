@@ -16,13 +16,13 @@ const array = [
     {word: "l", score: 0},
 ]
 
-describe('ランキング表示テスト',()=>{
-    it('データをセットすると、ランキングが描画される', () => {
+describe('WordRanking.vue',()=>{
+    it('コンポーネント描画テスト', () => {
         const wrapper = shallowMount(WordRanking,{
             propsData: {
                 ranking: array
             }
         });
-        expect(wrapper.find('.word-ranking').exists()).toBe(true)
+        expect(wrapper.find('.word-ranking').exists()).toBeTruthy()
     })
 })

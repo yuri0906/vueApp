@@ -1,8 +1,8 @@
 <template>
     <div class="app-page">
-        <h1>楽天商品検索＋YahooテキストAPIを使った簡易アプリ</h1>
+        <h1>VueApp</h1>
         <InputWord @click="receiveData"/>
-        <div v-if="show">
+        <div id="result" v-if="show">
             <WordRanking :ranking="ranking"/>
             <BarGraph :ranking="ranking"/>
         </div>
@@ -25,8 +25,10 @@ import BarGraph from "@/components/BarGraph.vue";
 export default class AppPage extends Vue  {
     private show = false;
     public ranking = [];
+    public input = "";
 
     private async receiveData(input:string){
+        this.input = input;
         if(!input){
             alert("キーワードを入力してください");
         }else if(input.length > 64){
