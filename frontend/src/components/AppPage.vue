@@ -2,7 +2,7 @@
     <div class="app-page">
         <h1>VueApp</h1>
         <InputWord @click="receiveData"/>
-        <div id="result" v-if="show">
+        <div class="result" v-if="show">
             <WordRanking :ranking="ranking"/>
             <BarGraph :ranking="ranking"/>
         </div>
@@ -26,7 +26,7 @@ export default class AppPage extends Vue  {
     private show = false;
     public ranking = [];
 
-    public async receiveData(input:string){
+    private async receiveData(input:string){
         if(!input){
             alert("キーワードを入力してください");
         }else if(input.length > 64){

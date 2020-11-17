@@ -6,8 +6,8 @@ server/index.tsで作成したインスタンスを利用して
 import Api from './index'
 
 export default {
-  sendParams (keyword:string) {
-    const item = {text: keyword} //keywordをサーバーサイドへpost
+  sendParams : (keyword:string) =>{
+    const item = {text: keyword};
     return Api().post('/', item);
   }
 }
