@@ -4,11 +4,11 @@ import InputWord from '../InputWord.vue'
 describe('InputWord.vue',()=>{
     const wrapper = shallowMount(InputWord);
 
-    it('コンポーネント描画テスト', () => {
+    test('コンポーネント描画テスト', () => {
         expect(wrapper.find('.input-word').exists()).toBeTruthy()
     })
 
-    it('クリックイベントテスト', () => {
+    test('クリックイベントテスト', () => {
         wrapper.setData({input: "テスト"});
         (wrapper.vm as any).setData();
         expect(wrapper.emitted().click).toEqual([['テスト']])

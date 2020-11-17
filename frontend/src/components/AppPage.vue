@@ -25,10 +25,8 @@ import BarGraph from "@/components/BarGraph.vue";
 export default class AppPage extends Vue  {
     private show = false;
     public ranking = [];
-    public input = "";
 
-    private async receiveData(input:string){
-        this.input = input;
+    public async receiveData(input:string){
         if(!input){
             alert("キーワードを入力してください");
         }else if(input.length > 64){

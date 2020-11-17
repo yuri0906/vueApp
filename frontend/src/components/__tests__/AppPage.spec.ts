@@ -1,20 +1,21 @@
 import { shallowMount } from '@vue/test-utils'
 import AppPage from '../AppPage.vue'
+import flushPromises from 'flush-promises'
 import WordRanking from '../WordRanking.vue'
-import InputWord from "../InputWord.vue";
+jest.mock('axios')
 
 describe('AppPage.vue',()=>{
     const wrapper = shallowMount(AppPage)
 
-    it('コンポーネント描画テスト', () => {
+    test('コンポーネント描画テスト', () => {
         expect(wrapper.find('.app-page').exists()).toBeTruthy()
     })
     
     //未完成
-    it('イベントテスト', () => {
-        wrapper.findComponent(InputWord).trigger('click',{input: "test"})
-        expect((wrapper.vm as any).input).toBe('test')
-        expect(wrapper.findComponent(WordRanking).exists()).toBeTruthy()
+    test('イベントテスト', async() => {
+        (wrapper.vm as any).receiveData('テスト').then(()=>{
+            expect(wrapper.findComponent(WordRanking).exists()).toBeTruthy()
+        })
+        
     })
-
 })

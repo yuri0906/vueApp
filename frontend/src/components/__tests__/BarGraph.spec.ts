@@ -17,7 +17,7 @@ const array = [
 ]
 
 describe('BarGraph.vue',()=>{
-    it('コンポーネント描画テスト', () => {
+    test('コンポーネント描画テスト', () => {
         const wrapper = shallowMount(BarGraph,{
             propsData: {
                 ranking: array

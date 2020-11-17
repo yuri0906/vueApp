@@ -14,6 +14,7 @@
     "chart.js": "^2.9.4",
     "core-js": "^3.6.5",
     "dr-vue-echarts": "^1.0.13",
+    "flush-promises": "^1.0.2",
     "lodash": "^4.17.20",
     "vue": "^2.6.11",
     "vue-chartjs": "^3.5.1",
