@@ -2,10 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="37a4249e-93f5-435d-a370-d3cc30ead7bb" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/AppPage.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/AppPage.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/src/components/BarChart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/BarChart.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/__tests__/AppPage.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/__tests__/AppPage.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/__tests__/BarGraph.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/__tests__/BarGraph.spec.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/frontend/src/components/__tests__/InputWord.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/__tests__/InputWord.spec.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/components/__tests__/WordRanking.spec.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/components/__tests__/WordRanking.spec.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +35,11 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/frontend/node_modules/typescript/lib" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/frontend/src/dummy" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -42,6 +49,7 @@
       <option name="presentableId" value="Default" />
       <updated>1605242726765</updated>
       <workItem from="1605242731168" duration="2155000" />
+      <workItem from="1605665174170" duration="513000" />
     </task>
     <servers />
   </component>

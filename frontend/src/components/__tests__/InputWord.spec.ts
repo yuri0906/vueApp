@@ -8,7 +8,7 @@ describe('InputWord.vue',()=>{
         expect(wrapper.find('.input-word').exists()).toBeTruthy()
     })
 
-    test('クリックイベントテスト', () => {
+    test('イベントテスト', () => {
         wrapper.setData({input: "テスト"});
         (wrapper.vm as any).setData();
         expect(wrapper.emitted().click).toEqual([['テスト']])
