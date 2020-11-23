@@ -12,6 +12,8 @@ exports.calcScore = async(searchWord) => {
         });
 
     let keyphraseList = [];
+
+    //TODO3:for文消す
     for(var itemCaption in itemCaptionList){ 
         const keyphrases = await api.extractKeyphrase(itemCaptionList[itemCaption]
             ).then(result => {
@@ -20,6 +22,7 @@ exports.calcScore = async(searchWord) => {
         keyphraseList = _.concat(keyphraseList,keyphrases);
     }
     
+    //TODO4:reduce文考える
     const scoreList = _.chain(keyphraseList)
         .map(_.toPairs)
         .flatten()

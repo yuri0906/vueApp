@@ -26,6 +26,7 @@ export default class AppPage extends Vue  {
     private show = false;
     public ranking = [];
 
+    //TODO5:条件分みやすくする
     private async receiveData(input:string){
         if(!input){
             alert("キーワードを入力してください");
