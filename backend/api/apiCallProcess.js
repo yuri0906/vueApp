@@ -1,5 +1,5 @@
 /*
-API呼び出し処理実装
+APIの呼び出し処理を実装
 */
 
 const axios = require("axios"); 
@@ -20,14 +20,14 @@ exports.searchProduct = async(keyword) => {
       throw new Error("error occured in rakutenAPI");
   });
   
-  //各商品の説明文を配列に追加
   const items = result.data["Items"]; 
-
+  
   const itemCaptionList = _.reduce(items,(result,item)=>{
-    let itemCaption = item.Item["itemCaption"];
-    if(itemCaption){
-      result.push(itemCaption);
+    let itemCaption = item.Item["itemCaption"]; 
+    if(!itemCaption){ //空文判定
+      return result
     }
+    result.push(itemCaption);
     return result;
   },[])
 

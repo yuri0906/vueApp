@@ -1,8 +1,7 @@
 /*
-集計結果計算を実装
-返し値のオブジェクトはindex.jsで使用
+ランキングの算出処理を実装
 */
-const api = require("./apiCalling"); 
+const api = require("./apiCallProcess"); 
 const _ = require("lodash"); 
 
 exports.calcScore = async(searchWord) => {
@@ -10,10 +9,8 @@ exports.calcScore = async(searchWord) => {
         ).then(result => {
             return result;
         });
-
+    
     let keyphraseList = [];
-
-    //TODO3:for文消す
     for(var itemCaption in itemCaptionList){ 
         const keyphrases = await api.extractKeyphrase(itemCaptionList[itemCaption]
             ).then(result => {
@@ -21,8 +18,7 @@ exports.calcScore = async(searchWord) => {
             });
         keyphraseList = _.concat(keyphraseList,keyphrases);
     }
-    
-    //TODO4:reduce文考える
+
     const scoreList = _.chain(keyphraseList)
         .map(_.toPairs)
         .flatten()

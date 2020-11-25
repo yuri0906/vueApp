@@ -6,12 +6,10 @@ const app = express()
 app.use(bodyParser.json())
 app.use(cors())
 
-const scoreList = require("./api/totalizing"); //集計結果計算ファイル
-
-//TODO2:api以下のファイル名の変更
+const calclator = require("./api/rankingCalcProcess"); 
 
 app.post('/', async(req, res) => {
-  const ranking = await scoreList.calcScore(req.body.text)
+  const ranking = await calclator.calcScore(req.body.text)
     .then(result => {
       return result;
     })
