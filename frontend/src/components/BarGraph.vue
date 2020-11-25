@@ -42,12 +42,11 @@ export default class BarGraph extends Vue  {
 }
 </script>
 
-<style scoped>
-.bar-graph {
-    position: relative;
-    width: 600px;
-    height: 300px;
-    margin-left: auto;
-    margin-right: auto;
-}
+<style lang="sass" scoped>
+.bar-graph 
+    position: relative
+    width: 600px
+    height: 300px
+    margin-left: auto
+    margin-right: auto
 </style>

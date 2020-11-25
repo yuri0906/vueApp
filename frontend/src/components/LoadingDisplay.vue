@@ -20,3 +20,6 @@ export default class Loading extends Vue  {
 
 }
 </script>
+
+<style lang="sass" scoped>
+</style>

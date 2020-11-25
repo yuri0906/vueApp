@@ -14,6 +14,5 @@ export default class BarChart extends Mixins(Bar, mixins.reactiveProp){
     public mounted() {
         this.renderChart(this.chartData,this.chartOptions);
     }
-
 }
 </script>

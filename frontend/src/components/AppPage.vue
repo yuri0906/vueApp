@@ -13,14 +13,15 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Methods from '../server/methods';
-import WordRanking from '@/components/WordRanking.vue';
+
 import InputWord from '@/components/InputWord.vue';
+import LoadingDisplay from '@/components/LoadingDisplay.vue'
+import WordRanking from '@/components/WordRanking.vue';
 import BarGraph from '@/components/BarGraph.vue';
-import Loading from '@/components/Loading.vue'
 
 @Component({
     components: {
-        InputWord, WordRanking, BarGraph, Loading,
+        InputWord, WordRanking, BarGraph, LoadingDisplay,
     }
 })
 
@@ -41,13 +42,14 @@ export default class AppPage extends Vue  {
             if(Object.keys(this.ranking).length===0){ //検索結果が0だった場合
                 alert("商品が見つかりませんでした");
             }else{
-                this.loading = false;
                 this.show = true;
             }
         }
+        this.loading = false;
     }
 }
 </script>
 
-<style scoped>
+<style lang="sass" scoped>
+
 </style>

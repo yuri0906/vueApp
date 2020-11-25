@@ -18,5 +18,5 @@ export default class WordRanking extends Vue  {
 }
 </script>
 
-<style scoped>
+<style lang="sass" scoped>
 </style>
