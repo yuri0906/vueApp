@@ -1,6 +1,6 @@
 <template>
 <div class="loading" v-if="loading">
-    <vue-loading type="spin" color="#333" :size="{ width: '50px', height: '50px'}"></vue-loading>
+    <vue-loading type="cylon" color="#41b983" :size="{ width: '50px', height: '50px'}"></vue-loading>
 </div>
 </template>
 
@@ -14,7 +14,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
     },
 })
 
-export default class Loading extends Vue  {
+export default class LoadingDisplay extends Vue  {
     @Prop({ type: Boolean, default: false})
     public loading!:boolean;
 
@@ -22,4 +22,7 @@ export default class Loading extends Vue  {
 </script>
 
 <style lang="sass" scoped>
+.loading
+    margin-top: 30px
+    margin-bottom: 30px
 </style>

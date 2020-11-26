@@ -25,12 +25,11 @@ export default class InputWord extends Vue  {
         width: 500px
         height: 2.5em
         font-size: 20px
-        border: 1px green solid
+        border: 1px #41b983 solid
     .search-button
-        height: 2em
+        width: 50px
+        height: 2.7em
         font-size: 20px
-        border-radius: 50%
-        color: white
-        background-color: green
-        border-color: green
+        border: 1px solid #41b983;
+        background-color: #41b983;
 </style>

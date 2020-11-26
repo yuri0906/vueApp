@@ -34,7 +34,7 @@ export default class BarGraph extends Vue  {
                 label: "score",
                 type: "bar",
                 data: datas,
-                borderColor: "#AAFFAA"
+                backgroundColor: "#41b983"
             }]
         };
         return chartData;

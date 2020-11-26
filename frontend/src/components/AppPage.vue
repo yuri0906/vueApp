@@ -1,8 +1,8 @@
 <template>
     <div class="app-page">
-        <h1>VueApp</h1>
+        <h1>商品検索+テキスト解析のVueApp</h1>
         <InputWord @click="receiveData"/>
-        <Loading :loading="loading"/>
+        <LoadingDisplay :loading="loading"/>
         <div class="result" v-if="show">
             <WordRanking :ranking="ranking"/>
             <BarGraph :ranking="ranking"/>
@@ -32,9 +32,9 @@ export default class AppPage extends Vue  {
 
     private async receiveData(input:string){
         this.loading = true;
-        if(!input){ //入力が空欄の場合
+        if(!input){ //入力が空欄の場合(楽天APIでエラー発生)
             alert("キーワードを入力してください");
-        }else if(input.length > 64){ //文字数が長すぎる場合
+        }else if(input.length > 64){ //64文字以上の場合(楽天APIでエラー発生)
             alert("検索文字数が多すぎます");
         }else{
             const response = await Methods.sendParams(input);
@@ -51,5 +51,10 @@ export default class AppPage extends Vue  {
 </script>
 
 <style lang="sass" scoped>
-
+.app-page
+    font-family: Avenir, Helvetica, Arial, sans-serif
+    -webkit-font-smoothing: antialiased
+    -moz-osx-font-smoothing: grayscale
+    text-align: center
+    color: #2c3e50
 </style>
