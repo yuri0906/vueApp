@@ -20,16 +20,17 @@ export default class InputWord extends Vue  {
 </script>
 
 <style lang="sass" scoped>
+$base-color: #41b983
 .input-word
     .keyword-input
         width: 500px
         height: 2.5em
         font-size: 20px
-        border: 1px #41b983 solid
+        border: 1px $base-color solid
     .search-button
         width: 50px
         height: 2.7em
         font-size: 20px
-        border: 1px solid #41b983;
-        background-color: #41b983;
+        border: 1px solid $base-color
+        background-color: $base-color
 </style>
