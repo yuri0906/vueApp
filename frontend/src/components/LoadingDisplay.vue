@@ -1,5 +1,5 @@
 <template>
-<div class="loading" v-if="loading">
+<div class="loading" v-if="isLoading">
     <vue-loading type="cylon" color="#41b983" :size="{ width: '50px', height: '50px'}"></vue-loading>
 </div>
 </template>
@@ -16,7 +16,7 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 
 export default class LoadingDisplay extends Vue  {
     @Prop({ type: Boolean, default: false})
-    public loading!:boolean;
+    public isLoading!:boolean;
 
 }
 </script>
