@@ -6,10 +6,10 @@ const app = express()
 app.use(bodyParser.json())
 app.use(cors())
 
-const calclator = require("./api/rankingCalcProcess"); 
+const calclator = require("./api/convertToRankingdata"); 
 
 app.post('/', async(req, res) => {
-  const ranking = await calclator.calcScore(req.body.text)
+  const ranking = await calclator.convertToRankingdata(req.body.text)
     .then(result => {
       return result;
     })
