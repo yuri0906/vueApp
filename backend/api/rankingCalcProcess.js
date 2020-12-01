@@ -3,6 +3,7 @@
 */
 const api = require("./apiCallProcess"); 
 const _ = require("lodash"); 
+const { result } = require("lodash");
 
 exports.calcScore = async(searchWord) => {
     const itemCaptionList = await api.searchProduct(searchWord
@@ -16,7 +17,7 @@ exports.calcScore = async(searchWord) => {
             ).then(result => {
                 return result;
             });
-        keyphraseList = _.concat(keyphraseList,keyphrases);
+        keyphraseList.push(keyphrases);
     }
 
     const scoreList = _.chain(keyphraseList)

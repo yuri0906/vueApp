@@ -1,7 +1,7 @@
 <template>
-    <div class="word-ranking">
+    <div class="words-ranking">
         <p>分析結果</p>
-        <div v-for="(item,index) in ranking10" :key="index" :class="isTop3(index)">
+        <div v-for="(item,index) in top10" :key="index" :class="isTop3(index)">
             {{index+1}}位：{{item.word}}
         </div>
     </div>
@@ -11,31 +11,28 @@
 import { Component, Prop, Vue } from "vue-property-decorator";
 
 @Component
-export default class WordRanking extends Vue  {
+export default class WordsRanking extends Vue  {
     @Prop({ type: Array, default: []}) 
     public ranking!:{word:string, score:number}[];
         
-    private get ranking10(){
+    private get top10(){
         return this.ranking.slice(0,10);
     } 
 
     private isTop3(index:number){
         if(index===0){
-            return "top-one";
+            return "words-ranking__item--first";
         }else if(index===1){
-            return "top-two";
+            return "words-ranking__item--second";
         }else if(index===2){
-            return "top-three";
+            return "words-ranking__item--third";
         }   
-        return "under-top-three"
     }
-
-    //isTop3という真偽値で上位3位を大文字にしたい
 }
 </script>
 
 <style lang="sass" scoped>
-.word-ranking
+.words-ranking
     margin-top: 30px
     margin-bottom: 30px
     font-size: 20px
@@ -43,13 +40,13 @@ export default class WordRanking extends Vue  {
         font-weight: 700
         font-size: 30px
         text-decoration: underline
-    .top-one
+    .words-ranking__item--first
         font-weight: 700
         font-size: 35px
-    .top-two
+    .words-ranking__item--second
         font-weight: 600
         font-size: 25px
-    .top-three
+    .words-ranking__item--third
         font-weight: 600
         font-size: 23px
 </style>
