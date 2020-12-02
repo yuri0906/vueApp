@@ -1,15 +1,15 @@
 /*
-検索キーワードに関する重要語句ランキングを算出
+検索キーワードに関する重要語句ランキングを算出する
 */
-const extractKeyphrasesFromSentence = require("./extractKeyphrasesFromSentence");
-const fetchItemCaptionList = require("./fetchItemCaptionList");
+const { extractKeyphrasesFromSentence } = require("./extractKeyphrasesFromSentence");
+const { fetchItemCaptionList } = require("./fetchItemCaptionList");
 const _ = require("lodash"); 
 
 exports.convertToRankingdata = async(searchWord) => {
-    const itemCaptionList = await fetchItemCaptionList.fetchItemCaptionList(searchWord);
+    const itemCaptionList = await fetchItemCaptionList(searchWord);
 
     const keyphraseList = await Promise.all(_.map(itemCaptionList, async(itemCaption)=>{
-        let keyphrases = await extractKeyphrasesFromSentence.extractKeyphrasesFromSentence(itemCaption);
+        let keyphrases = await extractKeyphrasesFromSentence(itemCaption);
         return keyphrases;
     }))
 
