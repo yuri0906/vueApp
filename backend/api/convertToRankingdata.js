@@ -23,7 +23,6 @@ exports.convertToRankingdata = async(searchWord) => {
         .flatten()
         .value();
 
-    console.log(_.sortBy(scoreList,"score").reverse())
     return _.sortBy(scoreList,"score").reverse(); //降順にソート
 }
 

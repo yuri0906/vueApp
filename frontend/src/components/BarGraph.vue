@@ -16,8 +16,8 @@ import Chart from "chart.js";
 })
 
 export default class BarGraph extends Vue  {
-    @Prop({ type: Array, default: []}) 
-    public ranking!:{word:string, score:number}[];
+    @Prop({ type: Array, default: ()=>[]}) 
+    public wordsRankingData!:{word:string, score:number}[];
     
     protected get chartOptions(){
         const chartOptions = {};
@@ -26,8 +26,8 @@ export default class BarGraph extends Vue  {
     
 
     protected get chartData(){
-        const datas = this.ranking.slice(0,10).map(x => x.score); 
-        const labels = this.ranking.slice(0,10).map(x => x.word);
+        const datas = this.wordsRankingData.slice(0,10).map(x => x.score); 
+        const labels = this.wordsRankingData.slice(0,10).map(x => x.word);
         const chartData = {
             labels: labels,
             datasets: [{

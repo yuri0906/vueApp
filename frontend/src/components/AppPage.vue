@@ -4,8 +4,8 @@
         <InputWord @click="fetchRankingData"/>
         <LoadingDisplay :is-loading="isLoading"/>
         <div class="result" v-if="isShow">
-            <WordsRanking :ranking="wordsRanking"/>
-            <BarGraph :ranking="wordsRanking"/>
+            <WordsRanking :words-ranking-data="wordsRankingData"/>
+            <BarGraph :words-ranking-data="wordsRankingData"/>
         </div>
     </div>
 </template>
@@ -27,7 +27,7 @@ import BarGraph from '@/components/BarGraph.vue';
 export default class AppPage extends Vue  {
     private isShow = false;
     public isLoading = false;
-    public wordsRanking = [];
+    public wordsRankingData = [];
 
     private async fetchRankingData(input:string){
         this.isLoading = true;
@@ -39,8 +39,8 @@ export default class AppPage extends Vue  {
             alert("検索文字数が多すぎます");
         }else{
             const response = await Methods.sendParams(input);
-            this.wordsRanking = response.data;
-            if(Object.keys(this.wordsRanking).length===0){ //検索結果が0だった場合
+            this.wordsRankingData = response.data;
+            if(Object.keys(this.wordsRankingData).length===0){ //検索結果が0だった場合
                 alert("商品が見つかりませんでした");
             }else{
                 this.isShow = true;
