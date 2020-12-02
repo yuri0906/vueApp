@@ -17,15 +17,28 @@ export default class WordsRanking extends Vue  {
 
     private get top10(){
         return this.wordsRankingData.slice(0,10);
-    } 
+    }
 
-    //同率が存在した場合のケア（ただし連続２つまでしか対応できない）
     private ranking(index:number){
         if(index>0 && this.top10[index].score === this.top10[index-1].score){
             return index;
         }
         return index+1;
     }
+
+    /*
+    ranking()改ver（来週書き換えて追加）
+    let count = 0;
+    for(let i=0;i<data.length;i++){
+        if(i>0&&data[i].score===data[i-1].score){
+            data[i].rank = i-count;
+            count++;
+        }else{
+            count = 0;
+            data[i].rank = i+1; 
+        }
+    }
+    */
 
     private isTop3(ranking:number){
         if(ranking===1){
