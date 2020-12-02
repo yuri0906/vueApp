@@ -4,8 +4,8 @@
         <InputWord @click="fetchRankingData"/>
         <LoadingDisplay :is-loading="isLoading"/>
         <div class="result" v-if="isShow">
-            <WordsRanking :ranking="ranking"/>
-            <BarGraph :ranking="ranking"/>
+            <WordsRanking :ranking="wordsRanking"/>
+            <BarGraph :ranking="wordsRanking"/>
         </div>
     </div>
 </template>
@@ -13,7 +13,6 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import Methods from '../server/methods';
-
 import InputWord from '@/components/InputWord.vue';
 import LoadingDisplay from '@/components/LoadingDisplay.vue'
 import WordsRanking from '@/components/WordsRanking.vue';
@@ -28,11 +27,11 @@ import BarGraph from '@/components/BarGraph.vue';
 export default class AppPage extends Vue  {
     private isShow = false;
     public isLoading = false;
-    public ranking = [];
+    public wordsRanking = [];
 
     private async fetchRankingData(input:string){
         this.isLoading = true;
-        this.isShow = false; //２回目以降前回の検索結果を隠す
+        this.isShow = false; //２回目以降で前回の検索結果を隠す
 
         if(!input){ //入力が空欄の場合
             alert("キーワードを入力してください");
@@ -40,8 +39,8 @@ export default class AppPage extends Vue  {
             alert("検索文字数が多すぎます");
         }else{
             const response = await Methods.sendParams(input);
-            this.ranking = response.data;
-            if(Object.keys(this.ranking).length===0){ //検索結果が0だった場合
+            this.wordsRanking = response.data;
+            if(Object.keys(this.wordsRanking).length===0){ //検索結果が0だった場合
                 alert("商品が見つかりませんでした");
             }else{
                 this.isShow = true;

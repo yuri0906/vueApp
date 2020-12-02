@@ -1,11 +1,11 @@
 import { shallowMount } from '@vue/test-utils'
 import AppPage from '../AppPage.vue'
 import flushPromises from 'flush-promises'
-const { dummyData } = require('@/dummy/dummyData.js')
+const { dummyDataA } = require('@/dummy/dummyData.js')
 
 jest.mock('@/server/methods', ()=>({
     sendParams : jest.fn((input)=>{
-        return dummyData
+        return dummyDataA
     })  
 }))
 
@@ -17,7 +17,7 @@ describe('AppPage.vue', ()=>{
     })
     
     test('メソッドテスト', async() => {
-        (wrapper.vm as any).receiveData('test')
+        (wrapper.vm as any).fetchRankingData('test')
         await flushPromises()
         expect(wrapper.find('.result').exists()).toBeTruthy()
     })

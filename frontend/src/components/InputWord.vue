@@ -1,7 +1,7 @@
 <template>
     <div class="input-word">
         <input class="keyword-input" v-model="input" type="text" placeholder="キーワードを入力">
-        <button class="search-button" @click="inputText"><img src="../assets/glass.png" width="20px" height="20px"></button> 
+        <button class="search-button" @click="emitClick"><img src="../assets/glass.png" width="20px" height="20px"></button> 
     </div>
 </template>
 
@@ -13,7 +13,7 @@ export default class InputWord extends Vue  {
     public input = "";
 
     @Emit('click')
-    public inputText(){
+    public emitClick(){
         return this.input;
     }
 }

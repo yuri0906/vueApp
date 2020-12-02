@@ -10,7 +10,7 @@ describe('InputWord.vue',()=>{
 
     test('イベントテスト', () => {
         wrapper.setData({input: "テスト"});
-        (wrapper.vm as any).setData();
+        (wrapper.vm as any).emitClick();
         expect(wrapper.emitted().click).toEqual([['テスト']])
     })
 })

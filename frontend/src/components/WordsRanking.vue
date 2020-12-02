@@ -1,8 +1,8 @@
 <template>
     <div class="words-ranking">
         <p>分析結果</p>
-        <div v-for="(item,index) in top10" :key="index" :class="isTop3(index)">
-            {{index+1}}位：{{item.word}}
+        <div v-for="(item,index) in top10" :key="index" :class="isTop3(rate(index))">
+            {{rate(index)}}位:{{item.word}}
         </div>
     </div>
 </template>
@@ -14,17 +14,24 @@ import { Component, Prop, Vue } from "vue-property-decorator";
 export default class WordsRanking extends Vue  {
     @Prop({ type: Array, default: []}) 
     public ranking!:{word:string, score:number}[];
-        
+
     private get top10(){
         return this.ranking.slice(0,10);
     } 
 
+    private rate(i:number){
+        if(i>0 && this.top10[i].score == this.top10[i-1].score){
+            return i;
+        }
+        return i+1;
+    }
+
     private isTop3(index:number){
-        if(index===0){
+        if(index===1){
             return "words-ranking__item--first";
-        }else if(index===1){
-            return "words-ranking__item--second";
         }else if(index===2){
+            return "words-ranking__item--second";
+        }else if(index===3){
             return "words-ranking__item--third";
         }   
     }

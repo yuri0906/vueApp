@@ -2,7 +2,7 @@ import { shallowMount } from '@vue/test-utils'
 import WordRanking from '../WordRanking.vue'
 const { dummyData } = require('@/dummy/dummyData.js')
 
-describe('WordRanking.vue',()=>{
+describe('WordsRanking.vue',()=>{
     test('コンポーネント描画テスト', () => {
         const wrapper = shallowMount(WordRanking,{
             propsData: {
