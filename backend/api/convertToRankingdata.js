@@ -1,9 +1,10 @@
 /*
 検索キーワードに関する重要語句ランキングを算出する
 */
+
+const _ = require("lodash"); 
 const { extractKeyphrasesFromSentence } = require("./extractKeyphrasesFromSentence");
 const { fetchItemCaptionList } = require("./fetchItemCaptionList");
-const _ = require("lodash"); 
 
 exports.convertToRankingdata = async(searchWord) => {
     const itemCaptionList = await fetchItemCaptionList(searchWord);
@@ -22,7 +23,7 @@ exports.convertToRankingdata = async(searchWord) => {
         .flatten()
         .value();
 
-    return _.sortBy(scoreList,"score").reverse();
+    return _.sortBy(scoreList,"score").reverse(); //降順にソート
 }
 
 

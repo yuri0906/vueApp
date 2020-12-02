@@ -3,8 +3,8 @@
 */
 
 const axios = require("axios"); 
-const yahoo = require("../secret/yahoo"); 
 const _ = require("lodash")
+const yahoo = require("../secret/yahoo"); //YahooAPIのIDとURL
 
 exports.extractKeyphrasesFromSentence = async(sentence) => {
     const params = new URLSearchParams();

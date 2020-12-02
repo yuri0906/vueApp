@@ -3,8 +3,8 @@
 */
 
 const axios = require("axios"); 
-const rakuten = require("../secret/rakuten"); 
 const _ = require("lodash")
+const rakuten = require("../secret/rakuten"); //楽天APIのIDとURL
 
 exports.fetchItemCaptionList = async(keyword) => { 
     const result = await axios.get(rakuten.apiURL,{
