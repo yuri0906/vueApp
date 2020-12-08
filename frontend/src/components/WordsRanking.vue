@@ -1,8 +1,8 @@
 <template>
     <div class="words-ranking">
         <p>分析結果</p>
-        <div v-for="(item,index) in top10" :key="index" :class="isTop3(ranking(index))">
-            {{ranking(index)}}位:{{item.word}}
+        <div v-for="(item,index) in top10" :key="index" :class="isTop3(rank[index])">
+            {{rank[index]}}位:{{item.word}}
         </div>
     </div>
 </template>
@@ -18,34 +18,29 @@ export default class WordsRanking extends Vue  {
     private get top10(){
         return this.wordsRankingData.slice(0,10);
     }
-
-    private ranking(index:number){
-        if(index>0 && this.top10[index].score === this.top10[index-1].score){
-            return index;
-        }
-        return index+1;
+    
+    private get ranking(){
+        let count = 0; //同率存在ケースのカウント
+        const rank = this.top10.map((currentItem,index)=>{
+            let preItem = this.top10[index-1];			
+            if(index>0 && currentItem.score===preItem.score){
+                let tie = index-count; 
+                count++;
+                return tie;
+            }else{
+                count = 0;
+                return index+1;
+            }
+        });
+        return rank;
     }
 
-    /*
-    ranking()改ver（来週書き換えて追加）
-    let count = 0;
-    for(let i=0;i<data.length;i++){
-        if(i>0&&data[i].score===data[i-1].score){
-            data[i].rank = i-count;
-            count++;
-        }else{
-            count = 0;
-            data[i].rank = i+1; 
-        }
-    }
-    */
-
-    private isTop3(ranking:number){
-        if(ranking===1){
+    private isTop3(rank:number){
+        if(rank===1){
             return "words-ranking__item--first";
-        }else if(ranking===2){
+        }else if(rank===2){
             return "words-ranking__item--second";
-        }else if(ranking===3){
+        }else if(rank===3){
             return "words-ranking__item--third";
         }   
     }

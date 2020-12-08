@@ -23,13 +23,13 @@ describe("fetchItemCaptionList正常テスト",() => {
 describe("fetchItemCaptionList異常テスト",() => {
     jest.setTimeout(30000);
 
-    test("2-1:空欄", async()=>{
+    test("異常ケース：空欄", async()=>{
         return await fetchItemCaptionList(" ").catch(e => {
             expect(e.message).toBe('error occured in rakutenAPI');
         });
     });
     
-    test("2-2:記号", async()=>{
+    test("異常ケース：記号", async()=>{
         return await fetchItemCaptionList("ふぁsg；fjbdcxdげ").catch(e => {
             expect(e.message).toBe('error occured in rakutenAPI');
         }); 
