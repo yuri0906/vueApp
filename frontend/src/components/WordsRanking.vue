@@ -1,8 +1,8 @@
 <template>
     <div class="words-ranking">
         <p>分析結果</p>
-        <div v-for="(item,index) in top10" :key="index" :class="isTop3(rank[index])">
-            {{rank[index]}}位:{{item.word}}
+        <div v-for="(item,index) in top10" :key="index" :class="isTop3(ranking[index])">
+            {{ranking[index]}}位:{{item.word}}
         </div>
     </div>
 </template>
@@ -22,9 +22,9 @@ export default class WordsRanking extends Vue  {
     private get ranking(){
         let count = 0; //同率存在ケースのカウント
         const rank = this.top10.map((currentItem,index)=>{
-            let preItem = this.top10[index-1];			
+            const preItem = this.top10[index-1];			
             if(index>0 && currentItem.score===preItem.score){
-                let tie = index-count; 
+                const tie = index-count; 
                 count++;
                 return tie;
             }else{
